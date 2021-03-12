@@ -47,32 +47,47 @@ class Company extends Equatable {
   final String country;
   final EnterpriseType enterpriseType;
 
-  Company({required this.id,required  this.enterpriseName,required  this.description, this.emailEnterprise, this.facebook, this.twitter, this.linkedin, this.phone, this.photo, required  this.value,required  this.shares, required this.sharePrice, required this.ownShare, required this.city, required this.country, required this.enterpriseType});
+  Company(
+      {required this.id,
+      required this.enterpriseName,
+      required this.description,
+      this.emailEnterprise,
+      this.facebook,
+      this.twitter,
+      this.linkedin,
+      this.phone,
+      this.photo,
+      required this.value,
+      required this.shares,
+      required this.sharePrice,
+      required this.ownShare,
+      required this.city,
+      required this.country,
+      required this.enterpriseType});
 
   @override
   List<Object?> get props => [
-    id,
-enterpriseName,
-description,
-emailEnterprise,
-facebook,
-twitter,
-linkedin,
-phone,
-ownEnterprise,
-photo,
-value,
-shares,
-sharePrice,
-ownShare,
-city,
-country,
-enterpriseType,
-  ];
-
+        id,
+        enterpriseName,
+        description,
+        emailEnterprise,
+        facebook,
+        twitter,
+        linkedin,
+        phone,
+        ownEnterprise,
+        photo,
+        value,
+        shares,
+        sharePrice,
+        ownShare,
+        city,
+        country,
+        enterpriseType,
+      ];
 }
 
-class EnterpriseType extends Equatable{
+class EnterpriseType extends Equatable {
   final int id;
   final String enterpriseTypeName;
 
