@@ -4,7 +4,7 @@ import 'package:ioatest/features/company/domain/repositories/company_repository.
 
 
 abstract class LoadCompanyById {
-  Future<Either<Error, List<Company>>> call({required int filterId});
+  Future<Either<Error, Company>> call({required int filterId});
 }
 
 class LoadCompanyByIdImp implements LoadCompanyById{
@@ -13,6 +13,6 @@ class LoadCompanyByIdImp implements LoadCompanyById{
   LoadCompanyByIdImp({required this.companyRepository});
 
   @override
-  Future<Either<Error, List<Company>>> call({required int filterId}) =>
+  Future<Either<Error, Company>> call({required int filterId}) =>
       companyRepository.loadById(filterId);
 }

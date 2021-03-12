@@ -5,8 +5,7 @@ import 'package:ioatest/features/company/domain/repositories/company_repository.
 import 'package:ioatest/features/company/domain/use_cases/load_company_by_name.dart';
 import 'package:mockito/mockito.dart';
 
-///Mockito are in dev [nullsafety],
-///this is a workaround (by null-safe, readme of mockito, https://github.com/dart-lang/mockito/blob/master/NULL_SAFETY_README.md)
+///Mockito workaround (by null-safe, readme of mockito, https://github.com/dart-lang/mockito/blob/master/NULL_SAFETY_README.md)
 class MockCompanyRepository extends Mock implements CompanyRepository {
   @override
   Future<Either<Error, List<Company>>> loadByName(String name) =>
@@ -20,7 +19,7 @@ void main() {
 
   setUp(() {
     mockRepository = MockCompanyRepository();
-    loadCompanyByName = LoadCompanyByName(companyRepository: mockRepository);
+    loadCompanyByName = LoadCompanyByNameImp(companyRepository: mockRepository);
   });
 
   test('should use repository.loadByName to get company by name', () async {
