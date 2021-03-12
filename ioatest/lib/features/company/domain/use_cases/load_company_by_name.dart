@@ -6,8 +6,7 @@ abstract class LoadCompanyByName {
   Future<Either<Error, List<Company>>> call({required String filterName});
 }
 
-
-class LoadCompanyByNameImp implements LoadCompanyByName{
+class LoadCompanyByNameImp implements LoadCompanyByName {
   CompanyRepository companyRepository;
 
   LoadCompanyByNameImp({required this.companyRepository});

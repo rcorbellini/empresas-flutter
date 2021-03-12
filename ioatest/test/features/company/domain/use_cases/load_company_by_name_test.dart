@@ -46,7 +46,6 @@ void main() {
         enterpriseType:
             EnterpriseType(id: 6, enterpriseTypeName: 'Ent type Name'));
 
-
     when(mockRepository.loadByName(name))
         .thenAnswer((_) async => Right<Error, List<Company>>([model]));
 
