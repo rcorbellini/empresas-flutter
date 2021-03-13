@@ -8,5 +8,5 @@ class NetworkStatusImp extends NetworkStatus {
   NetworkStatusImp();
 
   @override
-  Future<bool>  isConnected() => InternetConnectionChecker().hasConnection;
+  Future<bool> isConnected() => InternetConnectionChecker().hasConnection;
 }

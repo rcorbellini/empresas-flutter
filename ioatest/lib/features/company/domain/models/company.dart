@@ -37,12 +37,12 @@ class Company extends Equatable {
   final String? twitter;
   final String? linkedin;
   final String? phone;
-  final bool ownEnterprise = false;
+  final bool ownEnterprise;
   final String? photo;
-  final int value;
-  final int shares;
+  final int? value;
+  final int? shares;
   final num sharePrice;
-  final int ownShare;
+  final int? ownShare;
   final String city;
   final String country;
   final EnterpriseType enterpriseType;
@@ -57,6 +57,7 @@ class Company extends Equatable {
       this.linkedin,
       this.phone,
       this.photo,
+      required this.ownEnterprise,
       required this.value,
       required this.shares,
       required this.sharePrice,

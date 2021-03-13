@@ -1,0 +1,23 @@
+{
+    "enterprise":{
+        "id": 49,
+        "email_enterprise": null,
+        "facebook": null,
+        "twitter": null,
+        "linkedin": null,
+        "phone": null,
+        "own_enterprise": false,
+        "enterprise_name": "Lifebit",
+        "photo": "/uploads/enterprise/photo/49/240.jpeg",
+        "description": "Lifebit is building a cloud-based cognitive system that can reason about DNA data in the same way as humans. This offers researchers and R&D professionals, with limited-to-no computational and data analysis training, and their corresponding organisations (ie. pharmaceutical companies), a highly scalable, modular and reproducible system that automates the analysis processes, learns from the data and provides actionable insights.",
+        "city": "London",
+        "country": "UK",
+        "value": 0,
+        "share_price": 5000,
+        "enterprise_type": {
+            "id": 5,
+            "enterprise_type_name": "Biotechnology"
+        }
+    },
+    "success": true
+}

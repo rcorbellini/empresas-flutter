@@ -36,6 +36,7 @@ void main() {
         enterpriseName: name,
         ownShare: 20,
         sharePrice: 300,
+        ownEnterprise: false,
         value: 4000,
         shares: 50000,
         emailEnterprise: 'r@gmail.com',

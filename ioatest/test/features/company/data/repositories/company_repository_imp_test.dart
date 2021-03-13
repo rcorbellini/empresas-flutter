@@ -7,25 +7,26 @@ import 'package:ioatest/core/errors/exceptions.dart';
 import 'package:ioatest/core/utils/network_status.dart';
 import 'package:ioatest/features/company/data/data_source/company_cache_data_source.dart';
 import 'package:ioatest/features/company/data/data_source/company_remote_data_source.dart';
+import 'package:ioatest/features/company/data/entities/company_entity.dart';
 import 'package:ioatest/features/company/data/repositories/company_repository_imp.dart';
 import 'package:ioatest/features/company/domain/models/company.dart';
 import 'package:ioatest/features/company/domain/repositories/company_repository.dart';
 import 'package:mockito/mockito.dart';
 
-late Company model;
+late CompanyEntity model;
 
 ///Mockito workaround (by null-safe, readme of mockito, https://github.com/dart-lang/mockito/blob/master/NULL_SAFETY_README.md)
 class CompanyRemoteDataSourceMock extends Mock
     implements CompanyRemoteDataSource {
   @override
-  Future<Company> loadById(int id) =>
+  Future<CompanyEntity> loadById(int id) =>
       super.noSuchMethod(Invocation.getter(#loadById),
           returnValue: Future.value(model));
 
   @override
-  Future<List<Company>> loadByName(String name) =>
+  Future<List<CompanyEntity>> loadByName(String name) =>
       super.noSuchMethod(Invocation.getter(#loadByName),
-          returnValue: Future.value(<Company>[]));
+          returnValue: Future.value(<CompanyEntity>[]));
 }
 
 class CompanyCacheDataSourceMock extends Mock
@@ -36,14 +37,16 @@ class CompanyCacheDataSourceMock extends Mock
           returnValue: Future.value(model));
 
   @override
-  Future<void> cacheCompany(Company company) =>super.noSuchMethod(Invocation.getter(#cacheCompany),
+  Future<void> cacheCompany(Company company) =>
+      super.noSuchMethod(Invocation.getter(#cacheCompany),
           returnValueForMissingStub: Future.value(Void));
 }
 
 class NetworkStatusMock extends Mock implements NetworkStatus {
   @override
-  Future<bool> isConnected() =>  super.noSuchMethod(Invocation.getter(#isConnected),
-          returnValue:Future.value(false)); 
+  Future<bool> isConnected() =>
+      super.noSuchMethod(Invocation.getter(#isConnected),
+          returnValue: Future.value(false));
 }
 
 main() {
@@ -62,7 +65,7 @@ main() {
     companyRepository = CompanyRepositoryImp(
         remote: remote, cache: cache, networkStatus: networkStatusMock);
 
-    model = Company(
+    model = CompanyEntity(
         id: id,
         city: 'Canoas',
         country: 'Brasil',
@@ -72,6 +75,7 @@ main() {
         sharePrice: 300,
         value: 4000,
         shares: 50000,
+        ownEnterprise: false,
         emailEnterprise: 'r@gmail.com',
         facebook: '/test-facebook',
         linkedin: '/test-linkedin',

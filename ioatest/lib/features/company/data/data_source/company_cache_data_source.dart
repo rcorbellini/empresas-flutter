@@ -5,3 +5,17 @@ abstract class CompanyCacheDataSource {
 
   Future<void> cacheCompany(Company company);
 }
+
+class CompanyCacheDataSourceImp extends CompanyCacheDataSource {
+  final Map<int, Company> memory = {};
+
+  @override
+  Future<void> cacheCompany(Company company) async {
+    memory.putIfAbsent(company.id, () => company);
+  }
+
+  @override
+  Future<Company?> loadById(int id) async {
+    return memory[id];
+  }
+}

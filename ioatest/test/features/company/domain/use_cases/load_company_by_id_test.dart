@@ -37,6 +37,7 @@ void main() {
         sharePrice: 300,
         value: 4000,
         shares: 50000,
+        ownEnterprise: false,
         emailEnterprise: 'r@gmail.com',
         facebook: '/test-facebook',
         linkedin: '/test-linkedin',
