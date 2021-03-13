@@ -39,16 +39,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(body: SafeArea(child: Container(child: _buildForm())));
   }
 
-  //TODO remover
-  void mockSession() {
-    SessionHolder().uid = 'testeapple@ioasys.com.br';
-    SessionHolder().client = '11SN7w6NBMDiaDxU5K85dA';
-    SessionHolder().acessToken = 'xdnv8Q_CqD8SKm0e9xQLOA';
-    bloc.dispatchOn<HomeEvent>(HomeDetailEvent(49));
-  }
-
   Widget _buildForm() {
-    mockSession();
     return Column(
       children: [
         StreamBuilder<String>(

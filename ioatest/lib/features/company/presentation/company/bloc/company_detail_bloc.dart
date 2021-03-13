@@ -10,9 +10,10 @@ class CompanyDetailBloc extends FancyDelegate {
   static const String route = '/company/detail';
 
   final LoadCompanyById loadCompanyById;
-  final  NavigationService navigationService;
+  final NavigationService navigationService;
 
-  CompanyDetailBloc({required this.loadCompanyById, required this.navigationService, fancy})
+  CompanyDetailBloc(
+      {required this.loadCompanyById, required this.navigationService, fancy})
       : super(fancy: fancy) {
     listenOn<CompanyDetailEvent>(_onEventDispatched);
   }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import 'package:ioatest/core/injector/base_injector.dart';
@@ -17,26 +16,26 @@ class CompanyDetailPage extends StatefulWidget {
   _CompanyDetailPageState createState() => _CompanyDetailPageState();
 }
 
-class _CompanyDetailPageState extends State<CompanyDetailPage> { 
+class _CompanyDetailPageState extends State<CompanyDetailPage> {
   late CompanyDetailBloc bloc;
 
   @override
   void initState() {
     bloc = BaseInjector().get();
-     
-    dispatchLoadById(widget.id); 
 
-    super.initState(); 
+    dispatchLoadById(widget.id);
+
+    super.initState();
   }
 
-  void dispatchLoadById(int id){
+  void dispatchLoadById(int id) {
     bloc.dispatchOn<CompanyDetailEvent>(CompanyDetailLoadByIdEvent(id));
   }
 
   @override
   void dispose() {
     bloc.dispose();
-    super.dispose(); 
+    super.dispose();
   }
 
   @override
@@ -44,29 +43,28 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
     return Scaffold(body: SafeArea(child: Container(child: _buildDetail())));
   }
 
-  Widget _buildDetail(){
+  Widget _buildDetail() {
     return StreamBuilder<CompanyDetailStatus>(
-      stream: bloc.streamOf<CompanyDetailStatus>(),
-      builder: (context, snap){
-        if (!snap.hasData) {
-              return Text('sem conteudo');
-            }
-            final data = snap.data;
+        stream: bloc.streamOf<CompanyDetailStatus>(),
+        builder: (context, snap) {
+          if (!snap.hasData) {
+            return Text('sem conteudo');
+          }
+          final data = snap.data;
 
-            if (data is CompanyDetailLoading) {
-              return Text('Carregando');
-            }
+          if (data is CompanyDetailLoading) {
+            return Text('Carregando');
+          }
 
-            if (data is CompanyDetailLoaded) {
-              return Text(data.toString());
-            }
+          if (data is CompanyDetailLoaded) {
+            return Text(data.toString());
+          }
 
-            if (data is CompanyDetailError) {
-              return Text(data.message);
-            }
+          if (data is CompanyDetailError) {
+            return Text(data.message);
+          }
 
-            return Container();
-      }
-    );
+          return Container();
+        });
   }
 }

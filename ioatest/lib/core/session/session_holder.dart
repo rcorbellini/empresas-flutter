@@ -10,6 +10,6 @@ class SessionHolder {
   SessionHolder._internal();
 
   String? uid;
-  String? acessToken;
+  String? accessToken;
   String? client;
 }

@@ -13,7 +13,9 @@ class HomeBloc extends FancyDelegate {
   final LoadCompanyByName loadCompanyByName;
   final NavigationService navigationService;
 
-  HomeBloc({required this.loadCompanyByName, required this.navigationService, fancy}) : super(fancy: fancy) {
+  HomeBloc(
+      {required this.loadCompanyByName, required this.navigationService, fancy})
+      : super(fancy: fancy) {
     listenOn<String>(_dispatchSearchByName, key: HomeForm.preamble);
     listenOn<HomeEvent>(_onEventDispatched);
   }

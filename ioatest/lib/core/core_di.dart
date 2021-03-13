@@ -12,6 +12,7 @@ class CoreDi extends InjectorModule {
         (injector) => NetworkStatusImp());
     injector.register<Client, ClientHttp>((injector) => ClientHttp());
 
-    injector.register<NavigationService,NavigationServiceImp>((injector) => NavigationServiceImp());
+    injector.register<NavigationService, NavigationServiceImp>(
+        (injector) => NavigationServiceImp());
   }
 }

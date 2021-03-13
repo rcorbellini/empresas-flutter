@@ -8,3 +8,6 @@ class NoInternetError extends Error {}
 
 @immutable
 class RemoteError extends Error {}
+
+@immutable
+class UnauthorizedError extends RemoteError {}

@@ -8,9 +8,9 @@ import 'package:dartz/dartz.dart';
 import 'package:ioatest/features/company/domain/repositories/company_repository.dart';
 
 class CompanyRepositoryImp extends CompanyRepository {
-  CompanyCacheDataSource cache;
-  CompanyRemoteDataSource remote;
-  NetworkStatus networkStatus;
+  final CompanyCacheDataSource cache;
+  final CompanyRemoteDataSource remote;
+  final NetworkStatus networkStatus;
 
   CompanyRepositoryImp(
       {required this.cache, required this.remote, required this.networkStatus});

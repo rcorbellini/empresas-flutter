@@ -19,7 +19,7 @@ class ClientHttp extends http.BaseClient implements http.Client {
     final session = SessionHolder();
     final client = session.client;
     final uid = session.uid;
-    final acessToken = session.acessToken;
+    final acessToken = session.accessToken;
 
     if (client == null || uid == null || acessToken == null) {
       return null;
