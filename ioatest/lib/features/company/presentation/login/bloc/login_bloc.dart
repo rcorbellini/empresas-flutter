@@ -1,14 +1,16 @@
 import 'package:fancy_stream/fancy_stream.dart';
+import 'package:ioatest/core/navigation/navigation_service.dart';
 import 'package:ioatest/features/company/presentation/login/bloc/login_events.dart';
 
 class LoginBloc extends FancyDelegate {
   static const String route = '/login';
+  final NavigationService navigationService;
 
-  LoginBloc({fancy}) : super(fancy: fancy) {
-    listenOn<LoginEvent>(onEventDispatched);
+  LoginBloc({required this.navigationService, fancy}) : super(fancy: fancy) {
+    listenOn<LoginEvent>(_onEventDispatched);
   }
 
-  void onEventDispatched(LoginEvent loginEvent) {
+  void _onEventDispatched(LoginEvent loginEvent) {
     if (loginEvent is LoginSignEvent) {
       _logar(
           username: map[LoginForm.username], password: map[LoginForm.password]);

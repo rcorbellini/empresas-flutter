@@ -9,22 +9,26 @@ class ClientHttp extends http.BaseClient implements http.Client {
   @override
   Future<http.StreamedResponse> send(http.BaseRequest request) {
     Map<String, String>? defaultHeaders = _getDefaultHeaders();
-    if(defaultHeaders != null){
+    if (defaultHeaders != null) {
       request.headers.addAll(defaultHeaders);
     }
     return _httpClient.send(request);
   }
 
-  Map<String, String>? _getDefaultHeaders(){
-      final session = SessionHolder();
-      final client = session.client;
-      final uid = session.uid;
-      final acessToken = session.acessToken;
+  Map<String, String>? _getDefaultHeaders() {
+    final session = SessionHolder();
+    final client = session.client;
+    final uid = session.uid;
+    final acessToken = session.acessToken;
 
-      if(client ==null || uid == null || acessToken == null ){
-        return null;
-      }
+    if (client == null || uid == null || acessToken == null) {
+      return null;
+    }
 
-      return <String,String>{'client':client, 'uid': uid, 'access-token':acessToken};
+    return <String, String>{
+      'client': client,
+      'uid': uid,
+      'access-token': acessToken
+    };
   }
 }

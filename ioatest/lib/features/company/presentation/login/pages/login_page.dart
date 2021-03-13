@@ -12,7 +12,6 @@ class _LoginPageState extends State<LoginPage> {
   late LoginBloc bloc;
 
   final TextEditingController _userNameController = TextEditingController();
-
   final TextEditingController _passwordController = TextEditingController();
   @override
   void initState() {

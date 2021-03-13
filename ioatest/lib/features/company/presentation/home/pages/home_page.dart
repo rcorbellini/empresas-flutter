@@ -3,6 +3,7 @@ import 'package:ioatest/core/injector/base_injector.dart';
 import 'package:ioatest/core/session/session_holder.dart';
 import 'package:ioatest/features/company/domain/models/company.dart';
 import 'package:ioatest/features/company/presentation/home/bloc/home_bloc.dart';
+import 'package:ioatest/features/company/presentation/home/bloc/home_event.dart';
 import 'package:ioatest/features/company/presentation/home/bloc/home_state.dart';
 import 'package:ioatest/features/company/presentation/login/bloc/login_bloc.dart';
 import 'package:ioatest/features/company/presentation/login/bloc/login_events.dart';
@@ -39,10 +40,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   //TODO remover
-  void mockSession(){
+  void mockSession() {
     SessionHolder().uid = 'testeapple@ioasys.com.br';
     SessionHolder().client = '11SN7w6NBMDiaDxU5K85dA';
     SessionHolder().acessToken = 'xdnv8Q_CqD8SKm0e9xQLOA';
+    bloc.dispatchOn<HomeEvent>(HomeDetailEvent(49));
   }
 
   Widget _buildForm() {
@@ -68,22 +70,22 @@ class _HomePageState extends State<HomePage> {
         StreamBuilder<HomeState>(
           stream: bloc.streamOf<HomeState>(),
           builder: (context, snap) {
-            if(!snap.hasData){
+            if (!snap.hasData) {
               return Text('sem conteudo');
             }
             final data = snap.data;
 
-            if(data is HomeLoading){
+            if (data is HomeLoading) {
               return Text('Carregando');
             }
 
-            if(data is HomeListLoaded){
+            if (data is HomeListLoaded) {
               return Text(data.companies.toString());
             }
 
-            if(data is HomeError){
+            if (data is HomeError) {
               return Text(data.message);
-            } 
+            }
 
             return Container();
           },
