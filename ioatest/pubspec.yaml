@@ -25,7 +25,8 @@ dependencies:
     sdk: flutter
   equatable: ^2.0.0
   http: ^0.13.0
-  
+  get_it: ^6.0.0
+  fancy_stream: ^3.1.1+13
   dartz: ^0.10.0-nullsafety.1
   internet_connection_checker: ^0.0.1
 
