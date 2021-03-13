@@ -4,6 +4,7 @@ import 'package:ioatest/features/company/domain/models/company.dart';
 import 'package:ioatest/features/company/domain/repositories/company_repository.dart';
 import 'package:ioatest/features/company/domain/use_cases/load_company_by_name.dart';
 import 'package:mockito/mockito.dart';
+import 'package:ioatest/core/errors/errors.dart';
 
 ///Mockito workaround (by null-safe, readme of mockito, https://github.com/dart-lang/mockito/blob/master/NULL_SAFETY_README.md)
 class MockCompanyRepository extends Mock implements CompanyRepository {

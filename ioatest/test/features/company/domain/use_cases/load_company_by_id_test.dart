@@ -4,6 +4,7 @@ import 'package:ioatest/features/company/domain/models/company.dart';
 import 'package:ioatest/features/company/domain/repositories/company_repository.dart';
 import 'package:ioatest/features/company/domain/use_cases/load_company_by_id.dart';
 import 'package:mockito/mockito.dart';
+import 'package:ioatest/core/errors/errors.dart';
 
 late Company model;
 
