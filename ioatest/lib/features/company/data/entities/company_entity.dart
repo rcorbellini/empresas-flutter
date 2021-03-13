@@ -77,7 +77,7 @@ class CompanyEntity extends Company {
       photo: json['photo'] as String?,
       value: json['value'] as int,
       shares: json['shares'] as int?,
-      sharePrice: json['share_price'] as int?,
+      sharePrice: json['share_price'] as num,
       ownShare: json['own_shares'] as int?,
       city: json['city'] as String,
       country: json['country'] as String,

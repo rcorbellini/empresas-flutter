@@ -1,7 +1,7 @@
 import 'dart:convert';
 
+import 'package:http/http.dart';
 import 'package:ioatest/core/errors/exceptions.dart';
-import 'package:ioatest/core/utils/client_http.dart';
 import 'package:ioatest/features/company/data/entities/company_entity.dart';
 
 abstract class CompanyRemoteDataSource {
@@ -11,9 +11,9 @@ abstract class CompanyRemoteDataSource {
 }
 
 class CompanyRemoteDataSourceImp extends CompanyRemoteDataSource {
-  final ClientHttp clientHttp;
+  final Client clientHttp;
 
-  final String path = '/enterprises';
+  final String path = '/api/v1/enterprises';
   final String baseUrl = 'empresas.ioasys.com.br';
 
   CompanyRemoteDataSourceImp({required this.clientHttp});
@@ -38,7 +38,6 @@ class CompanyRemoteDataSourceImp extends CompanyRemoteDataSource {
     final url = Uri.https(baseUrl, path, {'name': name});
     final response = await clientHttp
         .get(url, headers: {'content-type': 'application/json'});
-
     if (response.statusCode == 200) {
       final result = json.decode(response.body)['enterprises'] as Iterable;
 

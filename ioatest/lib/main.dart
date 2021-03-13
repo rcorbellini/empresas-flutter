@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ioatest/core/core_di.dart';
 import 'package:ioatest/core/injector/base_injector.dart';
 import 'package:ioatest/features/company/company_di.dart';
+import 'package:ioatest/features/company/presentation/home/pages/home_page.dart';
 import 'package:ioatest/features/company/presentation/login/pages/login_page.dart';
 
 void main() {
-  BaseInjector().initialiseAll([CompanyDi()]);
+  BaseInjector().initialiseAll([CoreDi(),CompanyDi()]);
   runApp(MyApp());
 }
 
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: HomePage(),
     );
   }
 }
