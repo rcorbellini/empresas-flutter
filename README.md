@@ -7,6 +7,8 @@
 <img src="home_no_result.jpg"   width="150" >
 <img src="detail.jpg"   width="150" >
  </p>
+ 
+<img src="company.gif"    width="350">
 
 ## The Result
 - [x] Test (partial done).
