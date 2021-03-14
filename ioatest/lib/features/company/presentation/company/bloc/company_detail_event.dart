@@ -6,3 +6,7 @@ class CompanyDetailLoadByIdEvent extends CompanyDetailEvent {
   final int id;
   CompanyDetailLoadByIdEvent(this.id);
 }
+
+class CompanyDetailCloseEvent extends CompanyDetailEvent{
+
+}

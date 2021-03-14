@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:ioatest/features/company/data/entities/company_entity.dart';
 import 'package:ioatest/features/company/domain/models/company.dart';
 
 abstract class CompanyDetailStatus {}

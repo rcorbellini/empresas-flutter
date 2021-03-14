@@ -29,20 +29,29 @@ class _LoadingIoaState extends State<LoadingIoa>
     _startAnnimationLoading();
     return RotationTransition(
       turns: Tween(begin: 0.0, end: 1.0).animate(_rotationController),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Center(
+      child: Container(
+        height: 80,
+        width: 80,
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Center(
               child: SvgPicture.asset(
-            'assets/images/elipse_outside.svg',
-            semanticsLabel: 'Carregando',
-            height: 72,
-            width: 72,
-          )),
-          Center(
+                'assets/images/elipse_outside.svg',
+                semanticsLabel: 'Carregando',
+                height: 72,
+                width: 72,
+              ),
+            ),
+            Center(
               child: SvgPicture.asset('assets/images/elipse_inside.svg',
-                  height: 47, width: 47, semanticsLabel: 'Carregando'))
-        ],
+                  excludeFromSemantics: true,
+                  height: 47,
+                  width: 47,
+                  semanticsLabel: 'Carregando'),
+            )
+          ],
+        ),
       ),
     );
   }

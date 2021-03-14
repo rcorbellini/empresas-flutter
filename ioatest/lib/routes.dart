@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ioatest/features/company/presentation/company/bloc/company_detail_bloc.dart';
 import 'package:ioatest/features/company/presentation/company/pages/company_detail_page.dart';
@@ -9,14 +10,14 @@ import 'package:ioatest/features/company/presentation/login/pages/login_page.dar
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case HomeBloc.route:
-      return MaterialPageRoute(builder: (_) => HomePage());
+      return CupertinoPageRoute(builder: (_) => HomePage());
     case LoginBloc.route:
-      return MaterialPageRoute(builder: (_) => LoginPage());
+      return CupertinoPageRoute(builder: (_) => LoginPage());
     case CompanyDetailBloc.route:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           builder: (_) => CompanyDetailPage(id: settings.arguments as int));
     default:
-      return MaterialPageRoute(
+      return CupertinoPageRoute(
           builder: (_) => Scaffold(
                 body:
                     Center(child: Text('Rota não encontrada ${settings.name}')),
