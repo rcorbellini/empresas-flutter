@@ -7,3 +7,7 @@ class LoginErrorStatus extends LoginSatus {
 
   LoginErrorStatus(this.message);
 }
+
+
+
+class LoginInitialStatus extends LoginSatus {}

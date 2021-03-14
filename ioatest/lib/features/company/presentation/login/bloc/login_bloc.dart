@@ -28,37 +28,18 @@ class LoginBloc extends FancyDelegate {
     }
   }
 
-  bool _validar({String? username, String? password}) {
-    bool valid = true;
-    if (username == null || username.isEmpty) {
-      dispatchErrorOn<String?>('É Obrigado informar o Usuario!',
-          key: LoginForm.password);
-      valid = false;
-    }
-    if (username == null || username.isEmpty) {
-      dispatchErrorOn<String?>('É Obrigado informar a senha!',
-          key: LoginForm.password);
-      valid = false;
-    }
-
-    return valid;
-  }
-
   void _logar({String? username, String? password}) async {
-    if (_validar(username: username, password: password)) {
-      print('tentando logar $username e $password');
-      final result = await loginByUserAndPassword.call(
-          user: username!, password: password!);
-      result.fold(_handleErrorLogin, _handleSuccess);
-    }
+
+    _dispatchLoading();
+    final result =
+        await loginByUserAndPassword.call(user: username??'', password: password??'');
+    result.fold(_handleErrorLogin, _handleSuccess);
   }
 
   void _handleErrorLogin(Error e) {
     if (e is UnauthorizedError) {
       //show direct on fields
-      dispatchErrorOn<String?>('', key: LoginForm.username);
-      dispatchErrorOn<String?>('Usuario Não encontrado',
-          key: LoginForm.password);
+      dispatchOn<LoginSatus>(LoginErrorStatus('Credenciais incorretas'));
     } else if (e is NoInternetError) {
       //default message error
       dispatchOn<LoginSatus>(LoginErrorStatus(
@@ -72,6 +53,11 @@ class LoginBloc extends FancyDelegate {
 
   void _handleSuccess(User user) {
     navigationService.navigate(HomeBloc.route, replace: true);
+  }
+  
+
+  void _dispatchLoading() {
+    dispatchOn<LoginSatus>(LoginLoadingStatus());
   }
 }
 
