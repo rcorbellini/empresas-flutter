@@ -14,7 +14,7 @@ class ClientHttpMock extends Mock implements ClientHttp {
           returnValue: Future.value(http.Response('', 200)));
 }
 
-main() {
+void main() {
   late CompanyRemoteDataSource companyRemoteDataSource;
   late ClientHttpMock clientHttpMock;
 
@@ -28,8 +28,8 @@ main() {
     //arrange
     final id = 49;
 
-    final String path = '/enterprises';
-    final String baseUrl = 'empresas.ioasys.com.br';
+    final path = '/enterprises';
+    final baseUrl = 'empresas.ioasys.com.br';
     final json = stringJsonFromFile('company_by_id.json');
 
     when(clientHttpMock.get(Uri.https(baseUrl, '$path/$id')))
@@ -41,8 +41,16 @@ main() {
     expect(result.id, 49);
     expect(result.enterpriseName, 'Lifebit');
     expect(result.photo, '/uploads/enterprise/photo/49/240.jpeg');
-    expect(result.description,
-        'Lifebit is building a cloud-based cognitive system that can reason about DNA data in the same way as humans. This offers researchers and R&D professionals, with limited-to-no computational and data analysis training, and their corresponding organisations (ie. pharmaceutical companies), a highly scalable, modular and reproducible system that automates the analysis processes, learns from the data and provides actionable insights.');
+    expect(
+        result.description,
+        'Lifebit is building a cloud-based cognitive system that can '
+        'reason about DNA data in the same way as humans. This offers '
+        'researchers and R&D professionals, with limited-to-no '
+        'computational and data analysis training, and their '
+        'corresponding organisations (ie. pharmaceutical companies), '
+        'a highly scalable, modular and reproducible system that '
+        'automates the analysis processes, learns from the data '
+        'and provides actionable insights.');
     expect(result.city, 'London');
     expect(result.country, 'UK');
     expect(result.phone, null);
@@ -67,8 +75,16 @@ main() {
     expect(result.first.id, 49);
     expect(result.first.enterpriseName, 'Lifebit');
     expect(result.first.photo, '/uploads/enterprise/photo/49/240.jpeg');
-    expect(result.first.description,
-        'Lifebit is building a cloud-based cognitive system that can reason about DNA data in the same way as humans. This offers researchers and R&D professionals, with limited-to-no computational and data analysis training, and their corresponding organisations (ie. pharmaceutical companies), a highly scalable, modular and reproducible system that automates the analysis processes, learns from the data and provides actionable insights.');
+    expect(
+        result.first.description,
+        'Lifebit is building a cloud-based cognitive system that can '
+        'reason about DNA data in the same way as humans. This offers '
+        'researchers and R&D professionals, with limited-to-no '
+        'computational and data analysis training, and their '
+        'corresponding organisations (ie. pharmaceutical companies), '
+        'a highly scalable, modular and reproducible system that '
+        'automates the analysis processes, learns from the data '
+        'and provides actionable insights.');
     expect(result.first.city, 'London');
     expect(result.first.country, 'UK');
     expect(result.first.phone, null);

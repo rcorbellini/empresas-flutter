@@ -1,7 +1,9 @@
 import 'package:ioatest/core/injector/get_it_injector.dart';
 import 'package:ioatest/core/injector/injector_module.dart';
 
+///Uset to abstract injection dependency lib.
 abstract class BaseInjector {
+  ///Singleton instance of [BaseInjector]
   factory BaseInjector() {
     //injector used by default.
     return GetItInjector();
@@ -9,10 +11,6 @@ abstract class BaseInjector {
 
   T get<T extends Object>(
       {String key, Map<String, dynamic>? additionalParameters});
-
-  Iterable<T> getAll<T>({Map<String, dynamic>? additionalParameters});
-
-  void unregister<T>({String? key});
 
   void register<S extends Object, T extends S>(InjectorFactory<S> _factory,
       {bool isSingleton = false, String? key});
@@ -24,4 +22,6 @@ extension Initilizer on BaseInjector {
   }
 }
 
+///The builder of injector.
+// ignore: prefer_generic_function_type_aliases
 typedef T InjectorFactory<T>(BaseInjector injector);

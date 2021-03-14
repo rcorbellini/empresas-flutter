@@ -8,10 +8,6 @@ import 'package:ioatest/features/company/presentation/login/bloc/login_events.da
 import 'package:ioatest/features/company/presentation/login/bloc/login_status.dart';
 
 class LoginBloc extends FancyDelegate {
-  static const String route = '/login';
-  final NavigationService navigationService;
-  final LoginByUserAndPassword loginByUserAndPassword;
-
   LoginBloc(
       {required this.navigationService,
       required this.loginByUserAndPassword,
@@ -19,6 +15,11 @@ class LoginBloc extends FancyDelegate {
       : super(fancy: fancy) {
     listenOn<LoginEvent>(_onEventDispatched);
   }
+
+  static const String route = '/login';
+
+  final NavigationService navigationService;
+  final LoginByUserAndPassword loginByUserAndPassword;
 
   void _onEventDispatched(LoginEvent loginEvent) {
     if (loginEvent is LoginSignEvent) {
@@ -37,15 +38,17 @@ class LoginBloc extends FancyDelegate {
   void _handleErrorLogin(Error e) {
     if (e is UnauthorizedError) {
       //show direct on fields
-      dispatchOn<LoginSatus>(LoginErrorStatus('Credenciais incorretas'));
+      dispatchOn<LoginState>(LoginErrorState('Credenciais incorretas'));
     } else if (e is NoInternetError) {
       //default message error
-      dispatchOn<LoginSatus>(LoginErrorStatus(
-          'Não foi possível efetuar a consulta, verifique sua conexão e tente novamente.'));
+      dispatchOn<LoginState>(LoginErrorState(
+          'Não foi possível efetuar a consulta, verifique sua conexão'
+          ' e tente novamente.'));
     } else {
       //default message error
-      dispatchOn<LoginSatus>(LoginErrorStatus(
-          'Algo inseperado aconteceu, não foi possível e efetuar o login, tente mais tarde'));
+      dispatchOn<LoginState>(LoginErrorState(
+          'Algo inseperado aconteceu, não foi possível e efetuar o '
+          'login, tente mais tarde'));
     }
   }
 
@@ -54,7 +57,7 @@ class LoginBloc extends FancyDelegate {
   }
 
   void _dispatchLoading() {
-    dispatchOn<LoginSatus>(LoginLoadingStatus());
+    dispatchOn<LoginState>(LoginLoadingState());
   }
 }
 

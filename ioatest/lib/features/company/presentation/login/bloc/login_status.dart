@@ -1,11 +1,17 @@
-abstract class LoginSatus {}
+///Default (base) state of login
+abstract class LoginState {}
 
-class LoginLoadingStatus extends LoginSatus {}
+///Define login are loading
+class LoginLoadingState extends LoginState {}
 
-class LoginErrorStatus extends LoginSatus {
+///Define login has error.
+class LoginErrorState extends LoginState {
+  ///the constructor
+  LoginErrorState(this.message);
+
+  /// the message of error
   final String message;
-
-  LoginErrorStatus(this.message);
 }
 
-class LoginInitialStatus extends LoginSatus {}
+///Initial state of login
+class LoginInitialState extends LoginState {}

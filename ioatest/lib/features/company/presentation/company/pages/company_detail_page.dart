@@ -11,13 +11,16 @@ import 'package:ioatest/features/company/presentation/company/bloc/company_detai
 import 'package:ioatest/features/company/presentation/company/pages/company_detail_theme.dart';
 import 'package:ioatest/features/company/presentation/shared/loading_ioa_widget.dart';
 
+///Widget Page of detail an Company.
 class CompanyDetailPage extends StatefulWidget {
-  final int id;
-
+  ///Use [id] to set what company will be loaded;
   const CompanyDetailPage({
     Key? key,
     required this.id,
   }) : super(key: key);
+
+  final int id;
+
   @override
   _CompanyDetailPageState createState() => _CompanyDetailPageState();
 }
@@ -60,7 +63,7 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
 
           final data = snap.data;
 
-          String title = '';
+          var title = '';
           if (data is CompanyDetailLoaded) {
             title = data.company.enterpriseName;
           }
@@ -71,7 +74,7 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
 
   Widget _buildAppBar(String title) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Stack(
         children: [
           GestureDetector(
@@ -80,11 +83,11 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
             child: Container(
               height: 40,
               width: 40,
-              padding: EdgeInsets.all(13),
-              decoration: new BoxDecoration(
+              padding: const EdgeInsets.all(13),
+              decoration: const BoxDecoration(
                 color: CompanyDetailTheme.bgButtonColor,
-                borderRadius: new BorderRadius.all(
-                  const Radius.circular(4),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(4),
                 ),
               ),
               child: SvgPicture.asset(
@@ -94,12 +97,12 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
           ),
           Center(
             child: Container(
-              padding: EdgeInsets.fromLTRB(6, 6, 6, 6),
+              padding: const EdgeInsets.fromLTRB(6, 6, 6, 6),
               child: Text(
                 title,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.rubik(
-                  textStyle: TextStyle(fontSize: 18),
+                  textStyle: const TextStyle(fontSize: 18),
                 ),
               ),
             ),
@@ -126,7 +129,7 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
   }
 
   Widget _buildLoading() {
-    return Center(child: LoadingIoa());
+    return const Center(child: LoadingIoa());
   }
 
   Widget _buildError(String message) {
@@ -135,8 +138,8 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
         message,
         textAlign: TextAlign.center,
         style: GoogleFonts.rubik(
-          textStyle:
-              TextStyle(fontSize: 18, color: CompanyDetailTheme.textColorError),
+          textStyle: const TextStyle(
+              fontSize: 18, color: CompanyDetailTheme.textColorError),
         ),
       ),
     );
@@ -154,14 +157,15 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(bottom: 4),
+                  padding: const EdgeInsets.only(bottom: 4),
                   child: SvgPicture.asset('assets/images/empresa_logo.svg'),
                 ),
                 Text(
                   company.enterpriseName,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.rubik(
-                    textStyle: TextStyle(fontSize: 18, color: Colors.white),
+                    textStyle:
+                        const TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
               ],
@@ -169,10 +173,10 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
           ),
         ),
         Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Text(company.description,
               style: GoogleFonts.rubik(
-                textStyle: TextStyle(fontSize: 18),
+                textStyle: const TextStyle(fontSize: 18),
               )),
         )
       ],

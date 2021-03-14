@@ -6,17 +6,23 @@ import 'package:ioatest/features/company/domain/use_cases/load_company_by_id.dar
 import 'package:ioatest/features/company/presentation/company/bloc/company_detail_event.dart';
 import 'package:ioatest/features/company/presentation/company/bloc/company_detail_status.dart';
 
+///Bloc to handle all interaction of page Detail.
 class CompanyDetailBloc extends FancyDelegate {
-  static const String route = '/company/detail';
-
-  final LoadCompanyById loadCompanyById;
-  final NavigationService navigationService;
-
+  ///the constructor
   CompanyDetailBloc(
       {required this.loadCompanyById, required this.navigationService, fancy})
       : super(fancy: fancy) {
     listenOn<CompanyDetailEvent>(_onEventDispatched);
   }
+
+  ///the route of Company Detail
+  static const String route = '/company/detail';
+
+  ///Use case of company load by id
+  final LoadCompanyById loadCompanyById;
+
+  ///The navigator, to route for some page.
+  final NavigationService navigationService;
 
   void _onEventDispatched(CompanyDetailEvent event) {
     if (event is CompanyDetailLoadByIdEvent) {
@@ -39,13 +45,14 @@ class CompanyDetailBloc extends FancyDelegate {
   void _dispatchError(Error error) {
     if (error is NoInternetError) {
       dispatchOn<CompanyDetailStatus>(CompanyDetailError(
-          "Não foi possível efetuar a consulta, verifique sua conexão e tente novamente."));
+          'Não foi possível efetuar a consulta, verifique sua conexão'
+          ' e tente novamente.'));
     } else if (error is RemoteError) {
       dispatchOn<CompanyDetailStatus>(
-          CompanyDetailError("Algo inseperado aconteceu, tente mais tarde."));
+          CompanyDetailError('Algo inseperado aconteceu, tente mais tarde.'));
     } else {
       dispatchOn<CompanyDetailStatus>(
-          CompanyDetailError("Algo inseperado aconteceu."));
+          CompanyDetailError('Algo inseperado aconteceu.'));
     }
   }
 

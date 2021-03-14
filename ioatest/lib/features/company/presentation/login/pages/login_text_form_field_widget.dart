@@ -4,13 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ioatest/features/company/presentation/login/pages/login_theme.dart';
 import 'package:ioatest/main.dart';
 
+///Component styled of login form
 class LoginTextFormField extends StatefulWidget {
-  final bool withError;
-  final bool isPassword;
-  final String label;
-  final ValueChanged<String> onChanged;
-  final TextEditingController controller;
-
+  ///The constructor
+  ///use [withError] to set component status error.
+  ///use [isPassword] to set as obscured text.
+  ///use [onChanged] to set callback of text change.
+  ///use [label] to set a text label of field.
+  ///use [controller] to set the controller of preamble.
   const LoginTextFormField(
       {Key? key,
       this.withError = false,
@@ -19,6 +20,21 @@ class LoginTextFormField extends StatefulWidget {
       required this.controller,
       required this.label})
       : super(key: key);
+
+  ///to set component status error.
+  final bool withError;
+
+  ///to set as obscured text.
+  final bool isPassword;
+
+  ///to set a text label of field.
+  final String label;
+
+  ///to set callback of text change.
+  final ValueChanged<String> onChanged;
+
+  ///to set the controller of preamble.
+  final TextEditingController controller;
 
   @override
   _LoginTextFormFieldState createState() => _LoginTextFormFieldState();
@@ -55,18 +71,18 @@ class _LoginTextFormFieldState extends State<LoginTextFormField> {
             ),
             child: Center(
               child: Padding(
-                padding: EdgeInsets.all(14),
+                padding: const EdgeInsets.all(14),
                 child: CupertinoTextField(
                   controller: widget.controller,
                   style: GoogleFonts.rubik(
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                     fontSize: LoginTheme.textSize,
                   )),
                   obscureText: widget.isPassword && !paswordVisible,
                   onChanged: widget.onChanged,
                   suffix: _buildSufix(),
-                  cursorColor: MainTheme.pink,
-                  decoration: BoxDecoration(
+                  cursorColor: MainTheme.mainColor,
+                  decoration: const BoxDecoration(
                     color: LoginTheme.bgTextColor,
                   ),
                 ),
@@ -90,7 +106,7 @@ class _LoginTextFormFieldState extends State<LoginTextFormField> {
 
   Widget? _buildSufix() {
     if (widget.withError) {
-      return Icon(
+      return const Icon(
         Icons.error_outline,
         size: LoginTheme.iconSize,
         color: LoginTheme.iconColorError,

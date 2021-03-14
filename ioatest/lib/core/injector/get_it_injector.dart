@@ -1,24 +1,21 @@
 import 'package:get_it/get_it.dart';
 import 'package:ioatest/core/injector/base_injector.dart';
 
+///GetIt Implementation of [BaseInjector]
 class GetItInjector implements BaseInjector {
-  static final GetItInjector _singleton = GetItInjector._internal();
+  GetItInjector._internal();
 
+  ///The instance of Get It implementation (singleton)
   factory GetItInjector() {
     return _singleton;
   }
 
-  GetItInjector._internal();
+  static final GetItInjector _singleton = GetItInjector._internal();
 
   @override
   T get<T extends Object>(
       {String? key, Map<String, dynamic>? additionalParameters}) {
     return GetIt.instance<T>(instanceName: key);
-  }
-
-  @override
-  Iterable<T> getAll<T>({Map<String, dynamic>? additionalParameters}) {
-    throw UnimplementedError();
   }
 
   @override
@@ -30,10 +27,5 @@ class GetItInjector implements BaseInjector {
       GetIt.instance
           .registerFactory<S>(() => _factory(this), instanceName: key);
     }
-  }
-
-  @override
-  void unregister<T>({String? key}) {
-    throw UnimplementedError();
   }
 }

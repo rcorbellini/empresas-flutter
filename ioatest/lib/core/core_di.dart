@@ -8,11 +8,11 @@ import 'package:ioatest/core/utils/network_status.dart';
 class CoreDi extends InjectorModule {
   @override
   void initialise(BaseInjector injector) {
-    injector.register<NetworkStatus, NetworkStatusImp>(
-        (injector) => NetworkStatusImp());
-    injector.register<Client, ClientHttp>((injector) => ClientHttp());
-
-    injector.register<NavigationService, NavigationServiceImp>(
-        (injector) => NavigationServiceImp());
+    injector
+      ..register<NetworkStatus, NetworkStatusImp>(
+          (injector) => NetworkStatusImp())
+      ..register<Client, ClientHttp>((injector) => ClientHttp())
+      ..register<NavigationService, NavigationServiceImp>(
+          (injector) => NavigationServiceImp());
   }
 }

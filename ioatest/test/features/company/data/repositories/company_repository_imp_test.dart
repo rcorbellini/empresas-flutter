@@ -49,7 +49,7 @@ class NetworkStatusMock extends Mock implements NetworkStatus {
           returnValue: Future.value(false));
 }
 
-main() {
+void main() {
   late CompanyRemoteDataSourceMock remote;
   late CompanyCacheDataSourceMock cache;
   late CompanyRepository companyRepository;

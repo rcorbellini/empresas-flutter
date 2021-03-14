@@ -9,9 +9,9 @@ abstract class LoginByUserAndPassword {
 }
 
 class LoginByUserAndPasswordImp implements LoginByUserAndPassword {
-  final UserRepository userRepository;
-
   LoginByUserAndPasswordImp({required this.userRepository});
+
+  final UserRepository userRepository;
 
   @override
   Future<Either<Error, User>> call(

@@ -11,7 +11,7 @@ class MockCompanyRepository extends Mock implements CompanyRepository {
   @override
   Future<Either<Error, List<Company>>> loadByName(String name) =>
       super.noSuchMethod(Invocation.getter(#loadByName),
-          returnValue: Future.value(Right<Error, List<Company>>([])));
+          returnValue: Future.value(const Right<Error, List<Company>>([])));
 }
 
 void main() {
@@ -26,9 +26,9 @@ void main() {
   test('should use repository.loadByName to get company by name', () async {
     //->arrange
 
-    final String name = 'Comp Test';
+    final name = 'Comp Test';
 
-    final Company model = Company(
+    final model = Company(
         id: 1,
         city: 'Canoas',
         country: 'Brasil',

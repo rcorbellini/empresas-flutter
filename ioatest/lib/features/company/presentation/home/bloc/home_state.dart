@@ -11,7 +11,7 @@ class HomeError extends HomeState {
 }
 
 class HomeListLoaded extends HomeState {
-  final List<Company> companies;
-
   HomeListLoaded(this.companies);
+
+  final List<Company> companies;
 }

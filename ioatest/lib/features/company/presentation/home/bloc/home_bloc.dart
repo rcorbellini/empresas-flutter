@@ -34,13 +34,14 @@ class HomeBloc extends FancyDelegate {
 
   void _dispatchError(Error error) {
     if (error is NoInternetError) {
-      dispatchOn<HomeState>(HomeError(
-          "Não foi possível efetuar a consulta, verifique sua conexão e tente novamente."));
+      dispatchOn<HomeState>(
+          HomeError('Não foi possível efetuar a consulta, verifique sua '
+              'conexão e tente novamente.'));
     } else if (error is RemoteError) {
       dispatchOn<HomeState>(
-          HomeError("Algo inseperado aconteceu, tente mais tarde."));
+          HomeError('Algo inseperado aconteceu, tente mais tarde.'));
     } else {
-      dispatchOn<HomeState>(HomeError("Algo inseperado aconteceu."));
+      dispatchOn<HomeState>(HomeError('Algo inseperado aconteceu.'));
     }
   }
 

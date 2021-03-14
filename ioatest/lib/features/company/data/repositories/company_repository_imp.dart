@@ -7,13 +7,15 @@ import 'package:ioatest/features/company/domain/models/company.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ioatest/features/company/domain/repositories/company_repository.dart';
 
+///The implementation of [CompanyRepository], with all rules about store.
 class CompanyRepositoryImp extends CompanyRepository {
+  ///the constructor
+  CompanyRepositoryImp(
+      {required this.cache, required this.remote, required this.networkStatus});
+
   final CompanyCacheDataSource cache;
   final CompanyRemoteDataSource remote;
   final NetworkStatus networkStatus;
-
-  CompanyRepositoryImp(
-      {required this.cache, required this.remote, required this.networkStatus});
 
   @override
   Future<Either<Error, Company>> loadById(int id) async {

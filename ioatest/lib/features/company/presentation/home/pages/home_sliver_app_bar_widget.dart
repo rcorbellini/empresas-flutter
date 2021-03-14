@@ -4,23 +4,31 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ioatest/features/company/presentation/home/bloc/home_bloc.dart';
 import 'package:ioatest/features/company/presentation/home/pages/home_theme.dart';
 
+///Widget (Appbar) with a preample to search company
 class HomeSliverAppBar extends SliverPersistentHeaderDelegate {
-  final double expandedHeight;
-  final TextEditingController filter;
-  final HomeBloc bloc;
+  ///the Constructor of home sliver bar
   HomeSliverAppBar(
       {required this.expandedHeight, required this.filter, required this.bloc});
+
+  ///max height.
+  final double expandedHeight;
+
+  ///Controller for preamble.
+  final TextEditingController filter;
+
+  ///Bloc for preamble.
+  final HomeBloc bloc;
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     var searchBarOffset = expandedHeight - shrinkOffset - 24;
-    bool expanded = shrinkOffset < expandedHeight - kToolbarHeight - 48;
+    final expanded = shrinkOffset < expandedHeight - kToolbarHeight - 48;
     return Stack(
       clipBehavior: Clip.none,
       fit: StackFit.expand,
       children: [
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment(2, -2),
                 end: Alignment(-2, 2),
@@ -77,14 +85,14 @@ class HomeSliverAppBar extends SliverPersistentHeaderDelegate {
         keyboardType: TextInputType.text,
         placeholder: 'Pesquise por Empresa',
         placeholderStyle: GoogleFonts.rubik(
-            textStyle: TextStyle(
+            textStyle: const TextStyle(
           color: HomeTheme.textColor,
           fontSize: HomeTheme.textSearchSize,
         )),
         onChanged: (text) =>
             bloc.dispatchOn<String>(text, key: HomeForm.preamble),
-        prefix: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 14, 0.0, 14),
+        prefix: const Padding(
+          padding: EdgeInsets.fromLTRB(16, 14, 0.0, 14),
           child: Icon(
             Icons.search,
             size: HomeTheme.iconSearchSize,

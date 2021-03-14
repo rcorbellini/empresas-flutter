@@ -1,14 +1,13 @@
 import 'package:http/http.dart' as http;
 import 'package:ioatest/core/session/session_holder.dart';
 
+///Implementation of [http.Client] to set default headers.
 class ClientHttp extends http.BaseClient implements http.Client {
-  final http.Client _httpClient = new http.Client();
-
-  ClientHttp();
+  final http.Client _httpClient = http.Client();
 
   @override
   Future<http.StreamedResponse> send(http.BaseRequest request) {
-    Map<String, String>? defaultHeaders = _getDefaultHeaders();
+    final defaultHeaders = _getDefaultHeaders();
     if (defaultHeaders != null) {
       request.headers.addAll(defaultHeaders);
     }

@@ -7,10 +7,10 @@ import 'package:ioatest/features/company/domain/models/user.dart';
 import 'package:ioatest/features/company/domain/repositories/user_repository.dart';
 
 class UserRepositoryImp extends UserRepository {
+  UserRepositoryImp({required this.remote, required this.networkStatus});
+
   final UserRemoteDataSource remote;
   final NetworkStatus networkStatus;
-
-  UserRepositoryImp({required this.remote, required this.networkStatus});
 
   @override
   Future<Either<Error, User>> login(

@@ -46,7 +46,7 @@ void main() {
         photo: '',
         enterpriseType:
             EnterpriseType(id: 6, enterpriseTypeName: 'Ent type Name'));
-    final int id = 1;
+    final id = 1;
     when(mockRepository.loadById(id))
         .thenAnswer((_) async => Right<Error, Company>(model));
 

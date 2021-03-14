@@ -8,9 +8,9 @@ abstract class LoadCompanyById {
 }
 
 class LoadCompanyByIdImp implements LoadCompanyById {
-  CompanyRepository companyRepository;
-
   LoadCompanyByIdImp({required this.companyRepository});
+
+  final CompanyRepository companyRepository;
 
   @override
   Future<Either<Error, Company>> call({required int filterId}) =>

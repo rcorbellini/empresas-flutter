@@ -91,12 +91,13 @@ class _HomePageState extends State<HomePage> {
   Widget _buildError(String message) {
     return Center(
       child: Padding(
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         child: Text(
           message,
           textAlign: TextAlign.center,
           style: GoogleFonts.rubik(
-            textStyle: TextStyle(fontSize: 18, color: HomeTheme.textColorError),
+            textStyle:
+                const TextStyle(fontSize: 18, color: HomeTheme.textColorError),
           ),
         ),
       ),
@@ -108,29 +109,30 @@ class _HomePageState extends State<HomePage> {
       child: Text(
         'Nenhum resultado encontrado',
         style: GoogleFonts.rubik(
-          textStyle: TextStyle(fontSize: 18, color: HomeTheme.textColor),
+          textStyle: const TextStyle(fontSize: 18, color: HomeTheme.textColor),
         ),
       ),
     );
   }
 
   Widget _buildLoading() {
-    return Center(child: LoadingIoa());
+    return const Center(child: LoadingIoa());
   }
 
   Widget _buildListcompany(Map<int, Company> companies) {
     return ListView(children: <Widget>[
       Container(
-        padding: EdgeInsets.fromLTRB(16, 4, 16, 4),
+        padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
         child: Text(
           '${companies.length} resultados encontrados',
           style: GoogleFonts.rubik(
-            textStyle: TextStyle(fontSize: 14, color: HomeTheme.textColor),
+            textStyle:
+                const TextStyle(fontSize: 14, color: HomeTheme.textColor),
           ),
         ),
       ),
       ListView.builder(
-        physics: ScrollPhysics(),
+        physics: const ScrollPhysics(),
         shrinkWrap: true,
         itemCount: companies.length,
         itemBuilder: (context, index) => _buildItemCompany(companies[index]!),
@@ -140,7 +142,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildItemCompany(Company company) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(16, 4, 16, 4),
+      padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
       child: GestureDetector(
         onTap: () => _openDetail(company.id),
         child: Container(
@@ -149,8 +151,8 @@ class _HomePageState extends State<HomePage> {
             color: Color(
               (Random().nextDouble() * 0xFFFFFF).toInt(),
             ).withAlpha(140),
-            borderRadius: BorderRadius.all(
-              const Radius.circular(4),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(4),
             ),
           ),
           child: Center(
@@ -158,14 +160,15 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(bottom: 4),
+                  padding: const EdgeInsets.only(bottom: 4),
                   child: SvgPicture.asset('assets/images/empresa_logo.svg'),
                 ),
                 Text(
                   company.enterpriseName,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.rubik(
-                    textStyle: TextStyle(fontSize: 18, color: Colors.white),
+                    textStyle:
+                        const TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
               ],

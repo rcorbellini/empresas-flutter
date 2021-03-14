@@ -18,43 +18,69 @@ class CompanyDi implements InjectorModule {
   @override
   void initialise(BaseInjector injector) {
     //--->data
-    injector.register<CompanyRemoteDataSource, CompanyRemoteDataSourceImp>(
-        (injector) => CompanyRemoteDataSourceImp(clientHttp: injector.get()));
-    injector.register<CompanyCacheDataSource, CompanyCacheDataSourceImp>(
-        (injector) => CompanyCacheDataSourceImp(),
-        isSingleton: true);
-    injector.register<CompanyRepository, CompanyRepositoryImp>((injector) =>
-        CompanyRepositoryImp(
-            cache: injector.get(),
-            remote: injector.get(),
-            networkStatus: injector.get()));
+    injector
+      ..register<CompanyRemoteDataSource, CompanyRemoteDataSourceImp>(
+        (injector) => CompanyRemoteDataSourceImp(
+          clientHttp: injector.get(),
+        ),
+      )
+      ..register<CompanyCacheDataSource, CompanyCacheDataSourceImp>(
+          (injector) => CompanyCacheDataSourceImp(),
+          isSingleton: true)
+      ..register<CompanyRepository, CompanyRepositoryImp>(
+        (injector) => CompanyRepositoryImp(
+          cache: injector.get(),
+          remote: injector.get(),
+          networkStatus: injector.get(),
+        ),
+      )
+      ..register<UserRemoteDataSource, UserRemoteDataSourceImp>(
+        (injector) => UserRemoteDataSourceImp(
+          clientHttp: injector.get(),
+        ),
+      )
+      ..register<UserRepository, UserRepositoryImp>(
+        (injector) => UserRepositoryImp(
+          remote: injector.get(),
+          networkStatus: injector.get(),
+        ),
+      )
 
-    injector.register<UserRemoteDataSource, UserRemoteDataSourceImp>(
-        (injector) => UserRemoteDataSourceImp(clientHttp: injector.get()));
-    injector.register<UserRepository, UserRepositoryImp>((injector) =>
-        UserRepositoryImp(
-            remote: injector.get(), networkStatus: injector.get()));
+      //--->domain
+      ..register<LoadCompanyByName, LoadCompanyByNameImp>(
+        (injector) => LoadCompanyByNameImp(
+          companyRepository: injector.get(),
+        ),
+      )
+      ..register<LoadCompanyById, LoadCompanyByIdImp>(
+        (injector) => LoadCompanyByIdImp(
+          companyRepository: injector.get(),
+        ),
+      )
+      ..register<LoginByUserAndPassword, LoginByUserAndPasswordImp>(
+        (i) => LoginByUserAndPasswordImp(
+          userRepository: i.get(),
+        ),
+      )
 
-    //--->domain
-    injector.register<LoadCompanyByName, LoadCompanyByNameImp>(
-        (injector) => LoadCompanyByNameImp(companyRepository: injector.get()));
-
-    injector.register<LoadCompanyById, LoadCompanyByIdImp>(
-        (injector) => LoadCompanyByIdImp(companyRepository: injector.get()));
-
-    injector.register<LoginByUserAndPassword, LoginByUserAndPasswordImp>(
-        (injector) =>
-            LoginByUserAndPasswordImp(userRepository: injector.get()));
-
-    //--->presentation
-    injector.register((injector) => HomeBloc(
-        loadCompanyByName: injector.get(), navigationService: injector.get()));
-
-    injector.register((injector) => CompanyDetailBloc(
-        loadCompanyById: injector.get(), navigationService: injector.get()));
-
-    injector.register((injector) => LoginBloc(
-        navigationService: injector.get(),
-        loginByUserAndPassword: injector.get()));
+      //--->presentation
+      ..register(
+        (injector) => HomeBloc(
+          loadCompanyByName: injector.get(),
+          navigationService: injector.get(),
+        ),
+      )
+      ..register(
+        (injector) => CompanyDetailBloc(
+          loadCompanyById: injector.get(),
+          navigationService: injector.get(),
+        ),
+      )
+      ..register(
+        (injector) => LoginBloc(
+          navigationService: injector.get(),
+          loginByUserAndPassword: injector.get(),
+        ),
+      );
   }
 }

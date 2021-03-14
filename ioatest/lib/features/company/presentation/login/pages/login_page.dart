@@ -38,14 +38,14 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: StreamBuilder<LoginSatus>(
-          stream: bloc.streamOf<LoginSatus>(),
+        child: StreamBuilder<LoginState>(
+          stream: bloc.streamOf<LoginState>(),
           builder: (context, snap) {
             final data = snap.data;
             return Column(children: [
               RoundedAppBar(),
               Container(
-                child: _buildMainContent(data ?? LoginInitialStatus()),
+                child: _buildMainContent(data ?? LoginInitialState()),
               )
             ]);
           },
@@ -55,11 +55,11 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _loading() {
-    return Center(child: LoadingIoa());
+    return const Center(child: LoadingIoa());
   }
 
-  Widget _buildMainContent(LoginSatus status) {
-    bool isLoading = status is LoginLoadingStatus;
+  Widget _buildMainContent(LoginState status) {
+    final isLoading = status is LoginLoadingState;
     if (isLoading) {
       return Stack(
         children: [
@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
     return _buildForm(status);
   }
 
-  Widget _buildForm(LoginSatus status) {
+  Widget _buildForm(LoginState status) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -83,8 +83,8 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildUser(LoginSatus status) {
-    final bool error = status is LoginErrorStatus;
+  Widget _buildUser(LoginState status) {
+    final error = status is LoginErrorState;
 
     return LoginTextFormField(
       isPassword: false,
@@ -95,8 +95,10 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildPassword(LoginSatus status) {
-    final bool error = status is LoginErrorStatus;
+  Widget _buildPassword(LoginState status) {
+    //ignorado pro smartcast funcionar
+    // ignore: omit_local_variable_types
+    final bool error = status is LoginErrorState;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -118,11 +120,12 @@ class _LoginPageState extends State<LoginPage> {
       return Container();
     }
     return Padding(
-      padding: EdgeInsets.only(right: 20),
+      padding: const EdgeInsets.only(right: 20),
       child: Text(
         message, //status.message,
         style: GoogleFonts.rubik(
-          textStyle: TextStyle(fontSize: 16, color: LoginTheme.textColorError),
+          textStyle:
+              const TextStyle(fontSize: 16, color: LoginTheme.textColorError),
         ),
       ),
     );
@@ -131,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildButtonEntrar() {
     return Container(
       height: 48 + 12 + 12,
-      padding: EdgeInsets.fromLTRB(42, 12, 42, 12),
+      padding: const EdgeInsets.fromLTRB(42, 12, 42, 12),
       child: TextButton(
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -144,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Text(
           'ENTRAR',
           style: GoogleFonts.rubik(
-            textStyle: TextStyle(fontSize: 16, color: Colors.white),
+            textStyle: const TextStyle(fontSize: 16, color: Colors.white),
           ),
         ),
       ),
@@ -161,14 +164,15 @@ class _LoginPageState extends State<LoginPage> {
 }
 
 class RoundedAppBar extends StatelessWidget {
-  final double height = 300;
+  ///the heigt of AppBar
+  final _height = 300.0;
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
         SizedBox.fromSize(
-          size: Size.fromHeight(height),
+          size: Size.fromHeight(_height),
           child: LayoutBuilder(builder: (context, constraint) {
             final width = constraint.maxWidth * 4;
             return ClipRect(
@@ -179,8 +183,8 @@ class RoundedAppBar extends StatelessWidget {
                   width: width,
                   height: width,
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: width / 2 - height / 2),
-                    child: DecoratedBox(
+                    padding: EdgeInsets.only(bottom: width / 2 - _height / 2),
+                    child: const DecoratedBox(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         gradient: LinearGradient(
@@ -200,11 +204,12 @@ class RoundedAppBar extends StatelessWidget {
             children: [
               Image.asset('assets/images/logo_login.png'),
               Padding(
-                padding: EdgeInsets.only(top: 16),
+                padding: const EdgeInsets.only(top: 16),
                 child: Text(
                   'Seja bem vindo ao empresas!',
                   style: GoogleFonts.rubik(
-                    textStyle: TextStyle(fontSize: 20, color: Colors.white),
+                    textStyle:
+                        const TextStyle(fontSize: 20, color: Colors.white),
                   ),
                 ),
               ),
