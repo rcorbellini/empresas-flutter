@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -59,6 +58,7 @@ class _LoginTextFormFieldState extends State<LoginTextFormField> {
             onChanged: widget.onChanged,
             suffix: _buildSufix(),
             decoration: BoxDecoration(
+              border: widget.withError ? Border.all(color: LoginTheme.iconColorError) : null,
               borderRadius: BorderRadius.circular(4.0),
               color: LoginTheme.bgTextColor,
             ),

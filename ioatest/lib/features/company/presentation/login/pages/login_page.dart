@@ -99,6 +99,7 @@ class _LoginPageState extends State<LoginPage> {
     final bool error = status is LoginErrorStatus;
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         LoginTextFormField(
           isPassword: true,
@@ -107,15 +108,23 @@ class _LoginPageState extends State<LoginPage> {
           withError: error,
           controller: _pwdController,
         ),
-        error
-            ? Text(
-                status.message,
-                style: GoogleFonts.rubik(
-                  textStyle: TextStyle(fontSize: 16, color: Colors.white),
-                ),
-              )
-            : Container()
+        _buildErrorMessage(error ? status.message : null)
       ],
+    );
+  }
+
+  Widget _buildErrorMessage(String? message) {
+    if (message == null) {
+      return Container();
+    }
+    return Padding(
+      padding: EdgeInsets.only(right: 20),
+      child: Text(
+        message, //status.message,
+        style: GoogleFonts.rubik(
+          textStyle: TextStyle(fontSize: 16, color: LoginTheme.textColorError),
+        ),
+      ),
     );
   }
 
@@ -185,8 +194,18 @@ class RoundedAppBar extends StatelessWidget {
         }),
       ),
       Center(
-        child: Image.asset('assets/images/logo_login.png'),
+        child: Column(
+          children: [
+            Image.asset('assets/images/logo_login.png'),
+            Padding(
+                padding: EdgeInsets.only(top: 16),
+                child: Text('Seja bem vindo ao empresas!',
+                    style: GoogleFonts.rubik(
+                      textStyle: TextStyle(fontSize: 20, color: Colors.white),
+                    ),),),
+          ],
+        ),
       ),
-    ]);
+    ],);
   }
 }
