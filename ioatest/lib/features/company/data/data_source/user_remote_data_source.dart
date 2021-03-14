@@ -25,7 +25,7 @@ class UserRemoteDataSourceImp extends UserRemoteDataSource {
   @override
   Future<UserEntity> login(
       {required String username, required String password}) async {
-    final url = Uri.https(_path, '$_baseUrl');
+    final url = Uri.https(_baseUrl, _path);
     final response = await clientHttp
         .post(url, body: {'email': username, 'password': password});
 
