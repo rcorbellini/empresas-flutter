@@ -1,4 +1,3 @@
-![N|Solid](logo_ioasys.png)
 # The Company List
 
 <p float="left">
