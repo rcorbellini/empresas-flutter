@@ -60,7 +60,7 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
 
           final data = snap.data;
 
-          String title = '--';
+          String title = '';
           if (data is CompanyDetailLoaded) {
             title = data.company.enterpriseName;
           }

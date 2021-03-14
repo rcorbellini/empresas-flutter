@@ -4,7 +4,7 @@ import 'package:ioatest/core/injector/base_injector.dart';
 import 'package:ioatest/core/navigation/navigation_service.dart';
 import 'package:ioatest/features/company/company_di.dart';
 import 'package:ioatest/features/company/presentation/login/bloc/login_bloc.dart';
-import 'package:ioatest/features/company/presentation/splash/splash_page.dart';
+import 'package:ioatest/features/company/presentation/s%E1%B9%95lash/splash_page.dart';
 import 'package:ioatest/routes.dart';
 
 void main() {
