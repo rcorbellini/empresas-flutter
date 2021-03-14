@@ -19,6 +19,23 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        accentColor: Color(0xffE01E69), 
+         inputDecorationTheme: InputDecorationTheme(
+           fillColor: lightGrey,
+            border: OutlineInputBorder(),
+            contentPadding: EdgeInsets.symmetric(
+              vertical: 22,
+              horizontal: 26,
+            ),
+            labelStyle: TextStyle(
+              fontSize: 35,
+              decorationColor: Colors.red,
+            )),
+        textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+          backgroundColor: pink,
+          primary: Colors.white,
+        )),
       ),
       navigatorKey: BaseInjector().get<NavigationService>().navigatorKey,
       onGenerateRoute: generateRoute,
@@ -26,3 +43,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+const Color lightGrey = Color(0xffF5F5F5);
+ const Color pink = Color(0xffE01E69);
