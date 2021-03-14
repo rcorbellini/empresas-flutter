@@ -90,11 +90,14 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildError(String message) {
     return Center(
-      child: Text(
-        message,
-        textAlign: TextAlign.center,
-        style: GoogleFonts.rubik(
-          textStyle: TextStyle(fontSize: 18, color: HomeTheme.textColorError),
+      child: Padding(
+        padding: EdgeInsets.all(15),
+        child: Text(
+          message,
+          textAlign: TextAlign.center,
+          style: GoogleFonts.rubik(
+            textStyle: TextStyle(fontSize: 18, color: HomeTheme.textColorError),
+          ),
         ),
       ),
     );
@@ -142,31 +145,32 @@ class _HomePageState extends State<HomePage> {
         onTap: () => _openDetail(company.id),
         child: Container(
           height: 120,
-          decoration: new BoxDecoration(
+          decoration: BoxDecoration(
             color: Color(
               (Random().nextDouble() * 0xFFFFFF).toInt(),
             ).withAlpha(140),
-            borderRadius: new BorderRadius.all(
+            borderRadius: BorderRadius.all(
               const Radius.circular(4),
             ),
           ),
           child: Center(
-              child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(bottom: 4),
-                child: SvgPicture.asset('assets/images/empresa_logo.svg'),
-              ),
-              Text(
-                company.enterpriseName,
-                textAlign: TextAlign.center,
-                style: GoogleFonts.rubik(
-                  textStyle: TextStyle(fontSize: 18, color: Colors.white),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(bottom: 4),
+                  child: SvgPicture.asset('assets/images/empresa_logo.svg'),
                 ),
-              ),
-            ],
-          ),),
+                Text(
+                  company.enterpriseName,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.rubik(
+                    textStyle: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:ioatest/core/injector/base_injector.dart';
+import 'package:ioatest/core/utils/random_color.dart';
 import 'package:ioatest/features/company/domain/models/company.dart';
 import 'package:ioatest/features/company/presentation/company/bloc/company_detail_bloc.dart';
 import 'package:ioatest/features/company/presentation/company/bloc/company_detail_event.dart';
@@ -147,7 +148,7 @@ class _CompanyDetailPageState extends State<CompanyDetailPage> {
       children: [
         Container(
           height: 120,
-          color: Colors.green,
+          color: RandomColor.random(),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

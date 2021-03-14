@@ -8,7 +8,6 @@ import 'package:ioatest/features/company/presentation/splash/splash_page.dart';
 import 'package:ioatest/routes.dart';
 
 void main() {
-  ;
   runApp(MyApp());
 }
 

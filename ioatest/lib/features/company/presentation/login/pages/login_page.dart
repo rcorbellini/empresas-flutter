@@ -164,48 +164,54 @@ class RoundedAppBar extends StatelessWidget {
   final double height = 300;
   @override
   Widget build(BuildContext context) {
-    return Stack(alignment: AlignmentDirectional.center, children: [
-      SizedBox.fromSize(
-        size: Size.fromHeight(height),
-        child: LayoutBuilder(builder: (context, constraint) {
-          final width = constraint.maxWidth * 4;
-          return ClipRect(
-            child: OverflowBox(
-              maxHeight: double.infinity,
-              maxWidth: double.infinity,
-              child: SizedBox(
-                width: width,
-                height: width,
-                child: Padding(
-                  padding: EdgeInsets.only(bottom: width / 2 - height / 2),
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(
-                          begin: Alignment(0.5, -0.5),
-                          end: Alignment(-0.5, 0.5),
-                          colors: LoginTheme.gradientBgColor),
+    return Stack(
+      alignment: AlignmentDirectional.center,
+      children: [
+        SizedBox.fromSize(
+          size: Size.fromHeight(height),
+          child: LayoutBuilder(builder: (context, constraint) {
+            final width = constraint.maxWidth * 4;
+            return ClipRect(
+              child: OverflowBox(
+                maxHeight: double.infinity,
+                maxWidth: double.infinity,
+                child: SizedBox(
+                  width: width,
+                  height: width,
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: width / 2 - height / 2),
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: LinearGradient(
+                            begin: Alignment(0.5, -0.5),
+                            end: Alignment(-0.5, 0.5),
+                            colors: LoginTheme.gradientBgColor),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          );
-        }),
-      ),
-      Center(
-        child: Column(
-          children: [
-            Image.asset('assets/images/logo_login.png'),
-            Padding(
-                padding: EdgeInsets.only(top: 16),
-                child: Text('Seja bem vindo ao empresas!',
-                    style: GoogleFonts.rubik(
-                      textStyle: TextStyle(fontSize: 20, color: Colors.white),
-                    ),),),
-          ],
+            );
+          }),
         ),
-      ),
-    ],);
+        Center(
+          child: Column(
+            children: [
+              Image.asset('assets/images/logo_login.png'),
+              Padding(
+                padding: EdgeInsets.only(top: 16),
+                child: Text(
+                  'Seja bem vindo ao empresas!',
+                  style: GoogleFonts.rubik(
+                    textStyle: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 }

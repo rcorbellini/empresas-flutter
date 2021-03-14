@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ioatest/features/company/presentation/login/pages/login_theme.dart';
+import 'package:ioatest/main.dart';
 
 class LoginTextFormField extends StatefulWidget {
   final bool withError;
@@ -12,9 +13,9 @@ class LoginTextFormField extends StatefulWidget {
 
   const LoginTextFormField(
       {Key? key,
-      required this.withError,
+      this.withError = false,
       required this.onChanged,
-      required this.isPassword,
+      this.isPassword = false,
       required this.controller,
       required this.label})
       : super(key: key);
@@ -29,10 +30,9 @@ class _LoginTextFormFieldState extends State<LoginTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    final textColor =
-        widget.withError ? LoginTheme.textColorError : LoginTheme.textColor;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
           padding: EdgeInsets.only(left: paddingTB + 4, top: 8),
@@ -40,27 +40,37 @@ class _LoginTextFormFieldState extends State<LoginTextFormField> {
             widget.label,
             textAlign: TextAlign.center,
             style: GoogleFonts.rubik(
-              textStyle: TextStyle(fontSize: 18, color: textColor),
+              textStyle: TextStyle(fontSize: 18, color: _buildTextColor()),
             ),
           ),
         ),
-        Container(
-          height: 48 + paddingTB + paddingTB,
+        Padding(
           padding: EdgeInsets.fromLTRB(paddingTB, 4, paddingTB, 8),
-          child: CupertinoTextField(
-            controller: widget.controller,
-            obscureText: widget.isPassword && !paswordVisible,
-            placeholderStyle: GoogleFonts.rubik(
-                textStyle: TextStyle(
-              color: LoginTheme.textColor,
-              fontSize: LoginTheme.textSize,
-            )),
-            onChanged: widget.onChanged,
-            suffix: _buildSufix(),
+          child: Container(
+            height: 48 + paddingTB + paddingTB,
             decoration: BoxDecoration(
-              border: widget.withError ? Border.all(color: LoginTheme.iconColorError) : null,
+              border: _buildBorder(),
               borderRadius: BorderRadius.circular(4.0),
               color: LoginTheme.bgTextColor,
+            ),
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.all(14),
+                child: CupertinoTextField(
+                  controller: widget.controller,
+                  style: GoogleFonts.rubik(
+                      textStyle: TextStyle(
+                    fontSize: LoginTheme.textSize,
+                  )),
+                  obscureText: widget.isPassword && !paswordVisible,
+                  onChanged: widget.onChanged,
+                  suffix: _buildSufix(),
+                  cursorColor: MainTheme.pink,
+                  decoration: BoxDecoration(
+                    color: LoginTheme.bgTextColor,
+                  ),
+                ),
+              ),
             ),
           ),
         ),
@@ -68,29 +78,34 @@ class _LoginTextFormFieldState extends State<LoginTextFormField> {
     );
   }
 
+  Color _buildTextColor() {
+    return widget.withError ? LoginTheme.textColorError : LoginTheme.textColor;
+  }
+
+  Border? _buildBorder() {
+    return widget.withError
+        ? Border.all(color: LoginTheme.iconColorError)
+        : null;
+  }
+
   Widget? _buildSufix() {
     if (widget.withError) {
-      return Padding(
-          padding: const EdgeInsets.fromLTRB(0, 14, 16, 14),
-          child: Icon(
-            Icons.error_outline,
-            size: LoginTheme.iconSize,
-            color: LoginTheme.iconColorError,
-          ));
+      return Icon(
+        Icons.error_outline,
+        size: LoginTheme.iconSize,
+        color: LoginTheme.iconColorError,
+      );
     }
 
     if (widget.isPassword) {
-      return Padding(
-        padding: const EdgeInsets.fromLTRB(0, 14, 16, 14),
-        child: GestureDetector(
-          onTap: () => setState(() {
-            paswordVisible = !paswordVisible;
-          }),
-          child: Icon(
-            paswordVisible ? Icons.visibility_off : Icons.visibility,
-            size: LoginTheme.iconSize,
-            color: LoginTheme.iconColor,
-          ),
+      return GestureDetector(
+        onTap: () => setState(() {
+          paswordVisible = !paswordVisible;
+        }),
+        child: Icon(
+          paswordVisible ? Icons.visibility_off : Icons.visibility,
+          size: LoginTheme.iconSize,
+          color: LoginTheme.iconColor,
         ),
       );
     }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class LoginTheme{
+class LoginTheme {
   static const bgTextColor = Color(0xffF5F5F5);
   static const iconColor = Color(0xff666666);
   static const textColor = Color(0xff666666);

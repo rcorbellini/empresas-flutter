@@ -21,12 +21,12 @@ class CompanyDetailBloc extends FancyDelegate {
   void _onEventDispatched(CompanyDetailEvent event) {
     if (event is CompanyDetailLoadByIdEvent) {
       _loadById(event.id);
-    }else if( event is CompanyDetailCloseEvent){
+    } else if (event is CompanyDetailCloseEvent) {
       _pop();
     }
   }
 
-  void _pop(){
+  void _pop() {
     navigationService.pop();
   }
 

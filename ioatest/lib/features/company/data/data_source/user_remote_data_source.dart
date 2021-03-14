@@ -22,8 +22,8 @@ class UserRemoteDataSourceImp extends UserRemoteDataSource {
   Future<UserEntity> login(
       {required String username, required String password}) async {
     final url = Uri.https(baseUrl, '$path');
-    final response = await clientHttp.post(url,        
-        body: {'email': username, 'password': password});
+    final response = await clientHttp
+        .post(url, body: {'email': username, 'password': password});
 
     if (response.statusCode == 200) {
       final result = json.decode(response.body)['investor'];

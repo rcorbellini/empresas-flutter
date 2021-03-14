@@ -1,5 +1,3 @@
-import 'package:ioatest/features/company/data/entities/company_entity.dart';
-
 abstract class CompanyDetailEvent {}
 
 class CompanyDetailLoadByIdEvent extends CompanyDetailEvent {
@@ -7,6 +5,4 @@ class CompanyDetailLoadByIdEvent extends CompanyDetailEvent {
   CompanyDetailLoadByIdEvent(this.id);
 }
 
-class CompanyDetailCloseEvent extends CompanyDetailEvent{
-
-}
+class CompanyDetailCloseEvent extends CompanyDetailEvent {}

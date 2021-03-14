@@ -1,7 +1,6 @@
 import 'package:fancy_stream/fancy_stream.dart';
 import 'package:ioatest/core/errors/errors.dart';
 import 'package:ioatest/core/navigation/navigation_service.dart';
-import 'package:ioatest/core/session/session_holder.dart';
 import 'package:ioatest/features/company/domain/models/user.dart';
 import 'package:ioatest/features/company/domain/use_cases/login_by_user_and_password.dart';
 import 'package:ioatest/features/company/presentation/home/bloc/home_bloc.dart';
@@ -29,10 +28,9 @@ class LoginBloc extends FancyDelegate {
   }
 
   void _logar({String? username, String? password}) async {
-
     _dispatchLoading();
-    final result =
-        await loginByUserAndPassword.call(user: username??'', password: password??'');
+    final result = await loginByUserAndPassword.call(
+        user: username ?? '', password: password ?? '');
     result.fold(_handleErrorLogin, _handleSuccess);
   }
 
@@ -54,7 +52,6 @@ class LoginBloc extends FancyDelegate {
   void _handleSuccess(User user) {
     navigationService.navigate(HomeBloc.route, replace: true);
   }
-  
 
   void _dispatchLoading() {
     dispatchOn<LoginSatus>(LoginLoadingStatus());

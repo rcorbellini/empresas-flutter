@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:ioatest/features/company/domain/models/company.dart';
 
 class CompanyEntity extends Company {
